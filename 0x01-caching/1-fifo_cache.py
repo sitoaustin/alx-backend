@@ -5,26 +5,31 @@
 from base_caching import BaseCaching
 
 
-class BasicCache(BaseCaching):
+class FIFOCache(BaseCaching):
     """ BasicCache defines:
-      - Assigns keys and values to BaseCashing dictionary
-      - Gets the value of the key passed
+      - first in first out
+      - how to implement FIFOCache
     """
 
     def __init__(self):
         """Initialize and inheriting
         """
-        BaseCaching.__init__(self)
+        super().__init__()
 
     def put(self, key, item):
-        """Sets the key-value pair
+        """Sets...
         """
         if key is None or item is None:
             return
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            first_dict_key = list(self.cache_data.keys)[0]
+            self.cache_data.pop(first_dict_key)
+            self.cache_data[key] = item
+            print("DISCARD: {}".format(first_dict_key))
         self.cache_data[key] = item
 
     def get(self, key):
-        """Gets the value of the key
+        """gets...
         """
         if key is None or key not in self.cache_data:
             return None
