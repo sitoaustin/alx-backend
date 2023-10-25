@@ -16,7 +16,7 @@ class BasicCache(BaseCaching):
         """Initialize and ingerits
         """
         super().__init__(cache_data)
-        
+
     def put(self, key, item):
         """Sets the key-value pair
         """
@@ -27,6 +27,6 @@ class BasicCache(BaseCaching):
     def get(self, key):
         """Gets the value of the key
         """ 
-        if not self.cache_data:
+        if key is None or key not in self.cache_data:
             return None
         return self.cache_data[key]
