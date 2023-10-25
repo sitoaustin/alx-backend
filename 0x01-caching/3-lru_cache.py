@@ -22,10 +22,10 @@ class LRUCache(BaseCaching):
         if key is None or item is None:
             return
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            last_dict_key = list(self.cache_data)[-1]
-            self.cache_data.pop(last_dict_key)
+            least_used_item_key = next(iter(self.cache_data))
+            self.cache_data.pop(least_used_item_key)
             self.cache_data[key] = item
-            print("DISCARD: {}".format(last_dict_key))
+            print("DISCARD: {}".format(least_used_item_key))
             return
         self.cache_data[key] = item
 
