@@ -26,6 +26,7 @@ class FIFOCache(BaseCaching):
             self.cache_data.pop(first_dict_key)
             self.cache_data[key] = item
             print("DISCARD: {}".format(first_dict_key))
+            return
         self.cache_data[key] = item
 
     def get(self, key):
