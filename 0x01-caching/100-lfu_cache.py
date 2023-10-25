@@ -7,8 +7,8 @@ from base_caching import BaseCaching
 
 class LFUCache(BaseCaching):
     """ LFUCache defines:
-      - first in first out
-      - how to implement FIFOCache
+      - Least frequently used
+      - how to implement LFUCache
     """
 
     def __init__(self):
@@ -32,12 +32,6 @@ class LFUCache(BaseCaching):
                     self.frequency[key] = 1
                     print("DISCARD: {}".format(d_key))
                     return
-        # if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-        #     least_used_item_key = next(iter(self.cache_data))
-        #     self.cache_data.pop(least_used_item_key)
-        #     self.cache_data[key] = item
-        #     print("DISCARD: {}".format(least_used_item_key))
-        #     return
         self.cache_data[key] = item
         self.frequency[key] = 1
 
