@@ -27,6 +27,7 @@ class LFUCache(BaseCaching):
             for d_key, value in self.frequency.items():
                 if value == min_frequency:
                     self.cache_data.pop(d_key)
+                    self.frequency.pop(d_key)
                     self.cache_data[key] = item
                     print("DISCARD: {}".format(d_key))
                     return
