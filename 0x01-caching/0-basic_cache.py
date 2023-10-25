@@ -12,10 +12,10 @@ class BasicCache(BaseCaching):
     """
 
 
-    def __init__(self, cache_data):
+    def __init__(self):
         """Initialize and ingerits
         """
-        super().__init__(cache_data)
+        super().__init__(self)
 
     def put(self, key, item):
         """Sets the key-value pair
