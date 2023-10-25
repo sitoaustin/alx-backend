@@ -23,7 +23,7 @@ class LFUCache(BaseCaching):
         if key is None or item is None:
             return
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            self.least_value_key = 0
+            self.least_value_key = ""
             least_number_holder = self.frequency[next(iter(self.frequency))][1]
             for key, value in self.frequency.items():
                 if value[1] < least_number_holder:
