@@ -24,18 +24,18 @@ class LFUCache(BaseCaching):
             return
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             self.least_value_key = ""
-            least_number_holder = self.frequency[next(iter(self.frequency))][1]
+            least_number_holder = 0
             for key, value in self.frequency.items():
-                if value[1] < least_number_holder:
-                    least_number_holder = value[1]
+                if value < least_number_holder:
+                    least_number_holder = value
                     self.least_value_key = key
-            least_used_item_key = self.least_value_key
-            self.cache_data.pop(least_used_item_key)
+            # least_used_item_key = 
+            self.cache_data.pop(self.least_value_key)
             self.cache_data[key] = item
-            print("DISCARD: {}".format(least_used_item_key))
+            print("DISCARD: {}".format(self.least_value_key))
             return
         self.cache_data[key] = item
-        self.frequency[key] = [item, 1]
+        self.frequency[key] = 1
 
     def get(self, key):
         """gets...
@@ -46,5 +46,5 @@ class LFUCache(BaseCaching):
             reference_value = self.cache_data[key]
             self.cache_data.pop(key)
             self.cache_data[key] = reference_value
-            self.frequency[key][1] += 1
+            self.frequency[key] += 1
         return self.cache_data[key]
