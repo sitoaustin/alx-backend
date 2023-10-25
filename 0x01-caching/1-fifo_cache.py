@@ -22,7 +22,7 @@ class FIFOCache(BaseCaching):
         if key is None or item is None:
             return
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            first_dict_key = list(self.cache_data.keys)[0]
+            first_dict_key = next(iter(self.cache_data))
             self.cache_data.pop(first_dict_key)
             self.cache_data[key] = item
             print("DISCARD: {}".format(first_dict_key))
