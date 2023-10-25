@@ -29,7 +29,7 @@ class LFUCache(BaseCaching):
                     self.cache_data.pop(d_key)
                     self.frequency.pop(d_key)
                     self.cache_data[key] = item
-                    print("DISCARD: {}".format(key))
+                    self.frequency[key] = item
                     print("DISCARD: {}".format(d_key))
                     return
         # if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
