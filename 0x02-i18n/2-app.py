@@ -31,7 +31,7 @@ def get_locale():
     return languages.best_match(app.config["LANGUAGES"])
 
 
-@app.route("/")
+@app.route("/", strict_slashes=False)
 def home_page() -> str:
     """
     routes to the home page
