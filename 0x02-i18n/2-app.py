@@ -5,21 +5,20 @@
 from flask import Flask, render_template, request
 from flask_babel import Babel, localeselector
 
-app = Flask(__name__)
-babel = Babel(app)
-
 
 class Config:
     """
     configuring babel
     """
     LANGUAGES = ["en", "fr"]
-
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
+app = Flask(__name__)
 app.config.from_object(Config)
+babel = Babel(app)
+
 
 @babel.localeselector
 def get_locale():
@@ -31,12 +30,13 @@ def get_locale():
     # Return the best match with our supported languages.
     return languages.best_match(app.config["LANGUAGES"])
 
+
 @app.route("/")
 def home_page() -> str:
     """
     routes to the home page
     """
-    return render_template('1-index.html')
+    return render_template('2-index.html')
 
 
 if __name__ == "__main__":
